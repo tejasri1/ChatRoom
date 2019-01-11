@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<h1>
+			Welcome to <%=title%>
+		</h1>
+		<div class="grid-container">
+			<%msgs.forEach(function(m){%>
+				<div><%=m%></div>
+			<%})%>
+		</div>				
+			
+		<div class="button-div">
+			<input type="button" value="POST">
+		</div>
+		
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<!--
+			scripts for login and signup flows
+		-->
+	</body>
+</html>

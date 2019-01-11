@@ -1,0 +1,45 @@
+h1{
+  color : blue;
+  text-align:center;
+}
+
+button{
+  text-align:center;
+}
+
+.div1{
+  background-color : blue;
+}
+
+.grid-container{
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-rows: 100px 100px;
+	grid-gap: 20px;
+	padding: 20px;
+	height: 400px;
+	background-color: #2196F3;
+	scroll-behavior: smooth;
+}
+
+.grid-container > div{
+	background-color: rgba(255, 255, 255, 0.8);
+	text-align: left;
+	padding: 20px 20px;
+  	font-size: 30px;
+}
+
+.button-div{
+	text-align: center;
+	padding: 20px 20px;
+	background-color: seagreen;
+}
+
+.login-container{
+	padding-top: 50px;
+	padding-left: 200px;
+}
+
+.login-container > div{
+	padding: 40px 40px;
+}
