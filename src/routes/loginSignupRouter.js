@@ -25,7 +25,7 @@ function router(viewData) {
                 const response = await col.findOne({username: req.body.user_name});
                 // const response = await col.find().toArray();
                 if (response.password == req.body.password) {
-                	res.redirect(/home/);
+                	res.redirect('/post');
                 } else {
                 	debug("failed");
                 	res.json(failureMsg);

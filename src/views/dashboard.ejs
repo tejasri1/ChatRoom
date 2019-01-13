@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/css/styles.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<h1>
+			Welcome to <%=title%>
+		</h1>
+		<div class="grid-container" id="messages">
+			<%msgs.forEach(function(m){%>
+				<div><%=m%></div>
+			<%})%>
+		</div>
+		<div>	
+			<form id="form">
+				<input id="m" class="text-post" type="text-area" name="msg" placeholder="Type your message here.." size="100"><br>
+				<button class="button-post" type="submit">POST</button>
+			</form>
+		</div>
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/js/chat.js"></script>
+		
+	</body>
+</html>

@@ -4,13 +4,7 @@ const homeRouter = express.Router();
 
 homeRouter.route('/').get((req, res) => {
     const title = 'Chat Room';
-    const msgs = ['Hey', 'Hello, Whats up?'];
-    const viewData = {
-    	title,
-    	msgs
-    }
-    debug("reached home page");
-    res.render('index', viewData); 
+    res.render('loginSignup', {title}); 
 });
 
 module.exports = homeRouter;

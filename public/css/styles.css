@@ -29,7 +29,12 @@ button{
   	font-size: 30px;
 }
 
-.button-div{
+.text-post{
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.button-post{
 	text-align: center;
 	padding: 20px 20px;
 	background-color: seagreen;
