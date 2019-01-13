@@ -5,7 +5,7 @@
   "main": "first.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "DEBUG=app nodemon app.js"
+    "start": "DEBUG=app,app:* nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -18,13 +18,16 @@
   },
   "homepage": "https://github.com/tejasri1/ChatRoom#readme",
   "dependencies": {
+    "body-parser": "1.18.3",
     "bootstrap": "4.2.1",
     "chalk": "2.4.2",
     "debug": "4.1.1",
     "ejs": "2.6.1",
     "express": "4.16.4",
     "jquery": "3.3.1",
-    "morgan": "1.9.1"
+    "mongodb": "3.1.10",
+    "morgan": "1.9.1",
+    "tern": "0.23.0"
   },
   "nodemonConfig": {
     "restartable": "rs",

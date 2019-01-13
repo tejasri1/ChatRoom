@@ -1,4 +1,5 @@
 const express = require('express');
+const debug = require('debug')('app:homeRouter');
 const homeRouter = express.Router();
 
 homeRouter.route('/').get((req, res) => {
@@ -8,6 +9,7 @@ homeRouter.route('/').get((req, res) => {
     	title,
     	msgs
     }
+    debug("reached home page");
     res.render('index', viewData); 
 });
 
