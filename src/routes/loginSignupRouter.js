@@ -5,6 +5,8 @@ const MongoClient = require('mongodb').MongoClient;
 const failureMsg = {header: 'Login Failed',
 					message: 'Please enter your correct details!'}
 
+//write generic insert, delete functions taking 
+// dbName and data as arguments
 function router(viewData) {
     loginSignupRouter.route('/').get((req, res) => {
     	debug('Reached here');
@@ -13,7 +15,7 @@ function router(viewData) {
 
     loginSignupRouter.route('/login').post((req, res) => {
     	debug('Reached login');
-    	const url = 'mongodb://localhost:27017';
+    	const url = process.env.DB_HOST;
         const dbName = 'ChatRoom';
         (async function mongo(){
             let client;
@@ -23,7 +25,7 @@ function router(viewData) {
                 const db = client.db(dbName);
                 const col = await db.collection('LoginSignup');
                 const response = await col.findOne({username: req.body.user_name});
-                // const response = await col.find().toArray();
+                
                 if (response.password == req.body.password) {
                 	res.redirect('/post');
                 } else {
@@ -35,8 +37,6 @@ function router(viewData) {
             }
             client.close();
             }());
-        // res.send('Reached user/login');
-         // res.render('loginSignup', viewData);
     });
     return loginSignupRouter;
 }

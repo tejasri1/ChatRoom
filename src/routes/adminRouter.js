@@ -21,10 +21,12 @@ const loginSignups = [{
     status: 'active'
 }];
 
+const msgs = [{},{},{}];
+
 function router(viewData) {
     adminRouter.route('/')
         .get((req, res) => {
-            const url = 'mongodb://localhost:27017';
+            const url = process.env.DB_HOST;
             const dbName = 'ChatRoom';
             (async function mongo(){
                 let client;
