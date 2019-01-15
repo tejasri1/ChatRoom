@@ -4,7 +4,7 @@ const homeRouter = express.Router();
 
 homeRouter.route('/').get((req, res) => {
     const title = 'Chat Room';
-    res.render('loginSignup', {title}); 
+    res.render('signup', {title}); 
 });
 
 module.exports = homeRouter;

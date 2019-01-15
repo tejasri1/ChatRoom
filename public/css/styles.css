@@ -14,12 +14,12 @@ button{
 .grid-container{
 	display: grid;
 	grid-template-columns: auto;
-	grid-template-rows: 100px 100px;
+	grid-template-rows: 70px 70px;
 	grid-gap: 20px;
 	padding: 20px;
 	height: 400px;
 	background-color: #2196F3;
-	scroll-behavior: smooth;
+	overflow: scroll;
 }
 
 .grid-container > div{
@@ -41,6 +41,10 @@ button{
 }
 
 .login-container{
+	padding-top: 50px;
+	padding-left: 200px;
+}
+.signup-container{
 	padding-top: 50px;
 	padding-left: 200px;
 }

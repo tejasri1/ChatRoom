@@ -10,7 +10,10 @@
 		</h1>
 		<div class="grid-container" id="messages">
 			<%msgs.forEach(function(m){%>
-				<div><%=m%></div>
+				<div>
+					<%=m.msg%>
+					<!-- from user <%=m.username%>	 -->	
+				</div>
 			<%})%>
 		</div>
 		<div>	

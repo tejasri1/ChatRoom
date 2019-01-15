@@ -4,6 +4,10 @@ const debug = require('debug')('app');
 const morgan = require('morgan'); //to save debug logs to files
 const path = require('path');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+
 const app = express(); //creating an instance of application (express framework)
 const port = process.env.PORT || 3000;
 const http = require('http').Server(app);
@@ -16,6 +20,9 @@ app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(session({secret: 'irsajet'}));
+require('./src/config/passport.js')(app);
 app.set('views', './src/views'); //setting folder path for template engine to search
 app.set('view engine', 'ejs'); //setting view engine
 
