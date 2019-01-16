@@ -47,13 +47,18 @@ io.on('connection', function(socket){
 
 	//broadcasting new message on getting new_message event
 	socket.on('new_message', function(msg) {
-		debug('Got new message');
+		debug('Got new message from ');
 		debug(msg);
-		io.emit('update_message', msg);
+		io.emit('update_message', msg, socket.username);
+	});
+
+	socket.on('socket_username', function(username) {
+		debug('Got username update '+ username);
+		socket.username = username;
 	});
 });
 
 http.listen(port, function(){
-	debug(`Express is   listening to port ${chalk.green(port)}`);
+	debug(`Express is listening to port ${chalk.green(port)}`);
 })
 

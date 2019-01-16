@@ -7,8 +7,8 @@
 
 <body>
     <h1>
-			Welcome to <%=title%>
-		</h1>
+		Welcome to <%=title%>
+	</h1>
     <div class="grid-container" id="messages">
         <%msgs.forEach(function(m){%>
         <div>
@@ -18,6 +18,8 @@
         </div>
         <%})%>
     </div>
+    <p id="username" style="display:none"><%=username%></p>
+
     <div>
         <form id="form">
             <input id="m" class="text-post" type="text-area" name="msg" placeholder="Type your message here.." size="100"><br>

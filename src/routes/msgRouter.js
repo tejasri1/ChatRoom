@@ -20,7 +20,7 @@ msgRouter.route('/new')
         debug("reached POST POST");
         //update data base with messages
         
-        const username = req.user.username;
+        const username = req.user.username || req.username;
         (async function mongo() {
             let client;
             try {
@@ -43,6 +43,7 @@ msgRouter.route('/')
     .get((req, res) => {
         debug("reached POST GET");
         debug(req.user);
+        const username = req.user.username;
         (async function mongo() {
             let client;
             try {
@@ -53,10 +54,11 @@ msgRouter.route('/')
                     .project({ msg: 1, _id: 0, username: 1 })
                     .sort({ timestamp: 1 })
                     .toArray();
-
+            console.log("username in POST GET: "+username)
                 res.render('dashboard', {
                     title: title,
-                    msgs
+                    msgs,
+                    username
                 });
             } catch (err) {
                 debug(err.stack);
