@@ -51,7 +51,12 @@ function router(viewData) {
     });
     loginSignupRouter.route('/profile').get((req, res) => {
         res.redirect('/post/')
-        // res.json(req.user);
+    });
+    loginSignupRouter.route('/logout').get((req,res) => {
+        // req.logout(function(){
+            const title = 'Chat Room';
+            res.render('signup', {title}); 
+        // });
     });
     return loginSignupRouter;
 }

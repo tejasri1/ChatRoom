@@ -22,20 +22,15 @@ const MongoClient = require('mongodb').MongoClient;
                 const db = client.db(dbName);
                 const col = await db.collection('LoginSignup');
                 const response = await col.findOne({ username: username });
-
-                if (response.password == password) {
+                if (response == null || response.password != password) {
+                    done(null, false);
+                } else{
                     done(null, user);
-                } else {
-                	done(null, false);
-                    // debug("failed");
-                    // const newUser = {
-                    //     status: "failure",
-                    //     header: "Login failure",
-                    //     message: "Please signup!"
-                    // }
-                    // res.render('loginSignup', newUser);
                 }
+                
+                
             } catch (err) {
+                done(err);
                 debug(err.stack);
             }
             client.close();

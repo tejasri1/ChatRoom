@@ -8,6 +8,7 @@ $('form').submit(function(e){
 	$('#m').val('');
 });
 
+
 socket.on('update_message', function(msg){
 	// alert("client received update_message"+ msg);
 	$('#messages').append('<div>'+ msg +'</div>');

@@ -7,11 +7,20 @@ const url = process.env.DB_HOST;
 const dbName = 'ChatRoom';
 const title = 'Chat Room';
 
+msgRouter.use((req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        debug('user not found')
+        res.redirect('/');
+    }
+});
 msgRouter.route('/new')
     .post((req, res) => {
         debug("reached POST POST");
         //update data base with messages
-        debug(req.user);
+        
+        const username = req.user.username;
         (async function mongo() {
             let client;
             try {
@@ -21,10 +30,9 @@ msgRouter.route('/new')
                 const response = await col.insertOne({
                     timestamp: Date(),
                     msg: req.body.msg,
-                    username: req.user.username
+                    username
                 });
                 res.redirect('/post');
-                // res.json(response);
             } catch (err) {
                 debug(err.stack);
             }
@@ -45,7 +53,7 @@ msgRouter.route('/')
                     .project({ msg: 1, _id: 0, username: 1 })
                     .sort({ timestamp: 1 })
                     .toArray();
-                
+
                 res.render('dashboard', {
                     title: title,
                     msgs
