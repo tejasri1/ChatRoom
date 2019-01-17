@@ -1,3 +1,4 @@
+
 h1{
   color : blue;
   text-align:center;
@@ -20,6 +21,7 @@ button{
 	height: 400px;
 	background-color: #2196F3;
 	overflow: scroll;
+
 }
 
 .grid-container > div{
@@ -40,15 +42,3 @@ button{
 	background-color: seagreen;
 }
 
-.login-container{
-	padding-top: 50px;
-	padding-left: 200px;
-}
-.signup-container{
-	padding-top: 50px;
-	padding-left: 200px;
-}
-
-.login-container > div{
-	padding: 40px 40px;
-}

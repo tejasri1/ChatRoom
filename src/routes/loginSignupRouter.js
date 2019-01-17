@@ -38,7 +38,7 @@ function router(viewData) {
                     username: req.body.username,
                     password: req.body.password
                 });
-                debug(response);
+                // debug(response);
             } catch (err) {
                 debug(err.stack);
             }
