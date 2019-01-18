@@ -1,41 +1,82 @@
 <html>
 
 <head>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 </head>
 
 <body>
     <h1>
-		Welcome to <%=title%>
-	</h1>
-    <div class="grid-container" id="messages">
-        <%msgs.forEach(function(m){%>
-        <div>
-            <%=m.msg%>
-            from user
-            <%=m.username%>
+    </h1>
+    <p id="username" style="display:none">
+        <%=username%>
+    </p>
+    <p id="msg-list" style="display:none">
+        <%=msgs%>
+    </p>
+    <div class="container" id="chat">
+        <div class="row chat-window col-md-8" id="chat_window_1">
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading top-bar">
+                        <div class="col-md-8">
+                            <h3 class="panel-title" style="font-size: 30;font-style: ">FSE CHAT ROOM</h3>
+                        </div>
+                        <div class="col-md-12" style="text-align: right;font-size: 20">
+                            <a href="/user/logout"><span class="glyphicon glyphicon-remove icon_close" data-id="chat_window_1" style="align-items: right"></span></a>
+                        </div>
+                    </div>
+                    <div class="panel-body msg_container_base">
+                        <div id="messages">
+                            <%msgs.forEach(function(m){
+                                if(m.username == username) {
+                            %>
+                            <div class="row msg_container base_sent">
+                                <div class="col-md-6">
+                                    <div class="messages msg_sent">
+                                        <p>
+                                            <%=m.msg%>
+                                        </p>
+                                        <time>
+                                            <%=m.username%> |
+                                            <%=m.timestamp%></time>
+                                    </div>
+                                </div>
+                            </div>
+                            <%} else {%>
+                            <div class="row msg_container base_receive">
+                                <div class="col-md-6">
+                                    <div class="messages msg_receive">
+                                        <p>
+                                            <%=m.msg%>
+                                        </p>
+                                        <time>
+                                            <%=m.username%> |
+                                            <%=m.timestamp%></time>
+                                    </div>
+                                </div>
+                            </div>
+                            <%}})%>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <form id="form" class="input-group">
+                            <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-sm scrollToBottom" id="btn-chat">Send</button>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <%})%>
-    </div>
-    <p id="username" style="display:none"><%=username%></p>
-
-    <div>
-        <form id="form">
-            <input id="m" class="text-post" type="text-area" name="msg" placeholder="Type your message here.." size="100"><br>
-            <button class="button-post" type="submit">POST</button><br>
-        </form>
-        <form id="logout-form" action="/user/logout">
-            <input type="submit" value="Logout">
-        </form>
     </div>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
-    <script>
-    	$("#messages").scrollTop($("#messages")[0].scrollHeight);
-    </script>
 </body>
 
 </html>

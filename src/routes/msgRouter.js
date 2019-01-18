@@ -21,6 +21,14 @@ msgRouter.route('/new')
         //update data base with messages
         
         const username = req.user.username || req.username;
+        var time = new Date();
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var date = time.getDate();
+        var hour = time.getHours();
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+        const timestamp = req.timestamp || month+"."+date+"."+year + " | " + hour+":"+minutes;
         (async function mongo() {
             let client;
             try {
@@ -28,7 +36,7 @@ msgRouter.route('/new')
                 const db = client.db(dbName);
                 const col = await db.collection('Messages');
                 const response = await col.insertOne({
-                    timestamp: Date(),
+                    timestamp,
                     msg: req.body.msg,
                     username
                 });
@@ -51,7 +59,7 @@ msgRouter.route('/')
                 const db = client.db(dbName);
                 const col = await db.collection('Messages');
                 const msgs = await col.find({})
-                    .project({ msg: 1, _id: 0, username: 1 })
+                    .project({ msg: 1, _id: 0, username: 1, timestamp: 1 })
                     .sort({ timestamp: 1 })
                     .toArray();
             console.log("username in POST GET: "+username)

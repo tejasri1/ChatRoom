@@ -42,14 +42,19 @@ app.use('/admin', adminRouter);
 const msgRouter = require('./src/routes/msgRouter');
 app.use('/post', msgRouter);
 
+app.get('/test/', (req,res)=>{
+	res.sendFile(__dirname +  '/views/index.html');
+});
+
 io.on('connection', function(socket){
 	debug('a user connected');
 
 	//broadcasting new message on getting new_message event
-	socket.on('new_message', function(msg) {
+	socket.on('new_message', function(req) {
 		debug('Got new message from ');
-		debug(msg);
-		io.emit('update_message', msg, socket.username);
+		debug(req.msg);
+		req.username = socket.username;
+		io.emit('update_message', req);
 	});
 
 	socket.on('socket_username', function(username) {

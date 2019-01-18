@@ -1,21 +1,34 @@
 <html>
-<head>
-	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">-->
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
 
-	<!--<link rel="stylesheet" href="css/bootstrap-grid.min.css">-->
-	
-	</head>
-	<body>
-		<div class="container">
-			<div class="jumbotron">
-				Hey take this html!
-			</div>
-		</div>
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-	<!--	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-	-->
-	</body>
+<head>
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">-->
+    <link href="/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <!--<link rel="stylesheet" href="css/bootstrap-grid.min.css">-->
+</head>
+
+<body>
+    <div class="grid-container" id="messages">
+        <%msgs.forEach(function(m){%>
+        <div>
+            <%=m.msg%>
+            from user
+            <%=m.username%>
+        </div>
+        <%})%>
+    </div>
+    <div>
+        <form id="form">
+            <input id="m" class="text-post" type="text-area" name="msg" placeholder="Type your message here.." size="100"><br>
+            <button class="button-post" type="submit">POST</button><br>
+        </form>
+        <form id="logout-form" action="/user/logout">
+            <input type="submit" value="Logout">
+        </form>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+
 </html>
