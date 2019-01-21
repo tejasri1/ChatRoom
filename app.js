@@ -1,5 +1,5 @@
 const express = require('express'); //importing express
-const chalk = require('chalk'); //colring debug statements
+const chalk = require('chalk'); //coloring debug statements
 const debug = require('debug')('app');
 const morgan = require('morgan'); //to save debug logs to files
 const path = require('path');
@@ -23,44 +23,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({secret: 'irsajet'}));
 require('./src/config/passport.js')(app);
-app.set('views', './src/views'); //setting folder path for template engine to search
-app.set('view engine', 'ejs'); //setting view engine
+app.set('views', './src/views');
+app.set('view engine', 'ejs');
 
 const viewData = {
     title: 'Chat Room'
 }
 
 const loginSignupRouter = require('./src/routes/loginSignupRouter')(viewData);
-app.use('/user', loginSignupRouter); //letting app know to use router
+app.use('/user', loginSignupRouter);
 
 const homeRouter = require('./src/routes/homeRouter');
 app.use('/', homeRouter);
 
-const adminRouter = require('./src/routes/adminRouter')(viewData);
-app.use('/admin', adminRouter);
-
 const msgRouter = require('./src/routes/msgRouter');
 app.use('/post', msgRouter);
 
-app.get('/test/', (req,res)=>{
-	res.sendFile(__dirname +  '/views/index.html');
-});
 
 io.on('connection', function(socket){
 	debug('a user connected');
 
-	//broadcasting new message on getting new_message event
 	socket.on('new_message', function(req) {
-		debug('Got new message from ');
-		debug(req.msg);
-		req.username = socket.username;
 		io.emit('update_message', req);
 	});
 
-	socket.on('socket_username', function(username) {
-		debug('Got username update '+ username);
-		socket.username = username;
-	});
 });
 
 http.listen(port, function(){

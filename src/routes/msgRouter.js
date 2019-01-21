@@ -17,9 +17,8 @@ msgRouter.use((req, res, next) => {
 });
 msgRouter.route('/new')
     .post((req, res) => {
-        debug("reached POST POST");
+
         //update data base with messages
-        
         const username = req.user.username || req.username;
         var time = new Date();
         var year = time.getFullYear();
@@ -49,7 +48,6 @@ msgRouter.route('/new')
     })
 msgRouter.route('/')
     .get((req, res) => {
-        debug("reached POST GET");
         debug(req.user);
         const username = req.user.username;
         (async function mongo() {
@@ -62,7 +60,6 @@ msgRouter.route('/')
                     .project({ msg: 1, _id: 0, username: 1, timestamp: 1 })
                     .sort({ timestamp: 1 })
                     .toArray();
-            console.log("username in POST GET: "+username)
                 res.render('dashboard', {
                     title: title,
                     msgs,

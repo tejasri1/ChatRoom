@@ -4,8 +4,6 @@ $('form').submit(function(e){
 
 	//to set username as scoket param
 	const username = $('#username').html();
-	socket.emit('socket_username', username);
-
 	const msg = $('#btn-input').val();
 	var time = new Date();
 	var year = time.getFullYear();
@@ -16,7 +14,7 @@ $('form').submit(function(e){
 	var seconds = time.getSeconds();
 	const timestamp = month+"."+date+"."+year + " | " + hour+":"+minutes;
 
-	socket.emit('new_message', {msg, timestamp});
+	socket.emit('new_message', {msg, timestamp, username});
 	$.post('/post/new', {msg, username, timestamp}, function(){});
 	$('#btn-input').val('');
 

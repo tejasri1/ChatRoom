@@ -9,18 +9,15 @@ const failureMsg = {
     message: 'Please enter your correct details!'
 }
 
-//write generic insert, delete functions taking 
-// dbName and data as arguments
+
 function router(viewData) {
-    debug('Reached login');
     loginSignupRouter.route('/login')
     .get((req, res) => {
     	res.render('login', {title: "Chat Room"});
     })
     .post(passport.authenticate('local', {
-      successRedirect: '/user/profile',
+      successRedirect: '/post/',
       failureRedirect: '/'
-      //add failure flash
     }));
 
     loginSignupRouter.route('/signup').post((req, res) => {
@@ -38,7 +35,6 @@ function router(viewData) {
                     username: req.body.username,
                     password: req.body.password
                 });
-                // debug(response);
             } catch (err) {
                 debug(err.stack);
             }
@@ -46,12 +42,10 @@ function router(viewData) {
         }());
 
         req.login(req.body, () => {
-            res.redirect('/user/profile');
+            res.redirect('/post/');
         });
     });
-    loginSignupRouter.route('/profile').get((req, res) => {
-        res.redirect('/post/')
-    });
+    
     loginSignupRouter.route('/logout').get((req,res) => {
         // req.logout(function(){
             const title = 'Chat Room';
